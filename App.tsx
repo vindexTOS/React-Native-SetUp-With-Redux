@@ -1,20 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { withExpoSnack } from "nativewind";
 
-export default function App() {
+import { NavigationContainer } from "@react-navigation/native";
+import RootNavigation from "./navigation/RootNavigator";
+import TabNavigator from "./navigation/TabNavigator";
+import { Provider } from "react-redux";
+import store from "./Store/Store";
+function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Provider store={store}>
+      <NavigationContainer>
+        <RootNavigation />
+        <TabNavigator />
+      </NavigationContainer>
+    </Provider>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default withExpoSnack(App);
+
+// export default App;
